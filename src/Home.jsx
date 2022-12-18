@@ -21,6 +21,8 @@ function Home() {
 		
 			.then(()=>{
 				getData();
+				setFname("")
+				setLname("")
 			})
 			
 			
@@ -85,6 +87,7 @@ function Home() {
 						className="home_input"
 						placeholder="Enter First Name"
 						onChange={(e)=> setFname(e.target.value)}
+						value={fName}
 						
 						
 					/>
@@ -93,7 +96,7 @@ function Home() {
 						className="home_input_2"
 						placeholder="Enter Last Name"
 						onChange={(e)=> setLname(e.target.value)}
-						
+						value={lName}
 						
 					/>
 					</div>
