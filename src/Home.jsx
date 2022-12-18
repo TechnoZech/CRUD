@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./HomeStyles.css";
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 
 function Home() {
 
@@ -11,8 +11,6 @@ function Home() {
 	const[lName, setLname] = useState("");
 	const history = useNavigate();
 	const header = {"Access-Control-Allow-Origin": "*"};
-	const[fValue, setFvalue] = useState("");
-	const[lValue, setLvalue] = useState("");
 
 	const handleSubmit = (e) =>{
 
@@ -23,9 +21,6 @@ function Home() {
 		
 			.then(()=>{
 				getData();
-				setFvalue("")
-				setLvalue("")
-			
 			})
 			
 			
@@ -48,16 +43,24 @@ function Home() {
 
     // <<<---------------------     Delete Data       ----------------------->>>
 
+
 	function handleDelete(id){
 		axios.delete(`https://639c9c8a16d1763ab14f4153.mockapi.io/crud/${id}`)
 		.then(()=>{getData()})
 	}
 
 
+   // <<<---------------------     Update Data       ----------------------->>>
 
 
+	const setLocalStorage = (id, fName, lName)=>{
 
+		localStorage.setItem("fName", fName)
+		localStorage.setItem("lName", lName)
+		localStorage.setItem("id", id)
+		history("/update")
 
+	}
 
 	return (
 		<>
@@ -69,7 +72,8 @@ function Home() {
 
 								<h1 className="home_heading">{item.fName}</h1>
 								<h1 className="home_heading_2">{item.lName}</h1>
-								<button className="delete_btn">Edit</button>
+								<button className="delete_btn" onClick={()=>setLocalStorage(item.id, item.fName, item.lName)}>Edit</button>
+							
 								<button className="delete_btn" onClick={()=>{handleDelete(item.id)}}>Delete</button>
 							</div>
 						);
@@ -81,7 +85,7 @@ function Home() {
 						className="home_input"
 						placeholder="Enter First Name"
 						onChange={(e)=> setFname(e.target.value)}
-						// value={fValue}
+						
 						
 					/>
 					<input
@@ -89,7 +93,7 @@ function Home() {
 						className="home_input_2"
 						placeholder="Enter Last Name"
 						onChange={(e)=> setLname(e.target.value)}
-						// value={lValue}
+						
 						
 					/>
 					</div>
