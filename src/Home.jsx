@@ -102,6 +102,7 @@ function Home() {
 					</div>
 					<br />
 					<button className="submit_btn" onClick={handleSubmit}>Submit</button>
+					<button onClick={()=>{history("/upload")}}>Upload Page</button>
 				</div>
 			</section>
 		</>

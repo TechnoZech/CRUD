@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.upload_container{
+  margin-left: 500px;
+  margin-top: 300px;
+}
